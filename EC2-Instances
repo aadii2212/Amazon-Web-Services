@@ -9,7 +9,7 @@ Components of EC2
 •	ELB (Elastic Load Balancer) – used to distribute user traffic across multiple virtual machines.
 •	EBS (Elastic Block Storage) – used to provide pendrive-like concepts, also known as virtual drives.
 •	Auto Scaling Groups – used to auto scale the instances just by providing minimum and maximum count.
-17/09/2026
+
 Instances
 •	The virtual machine / virtual server in AWS.
 •	Offers complete customization when creating a virtual machine:
@@ -24,6 +24,11 @@ Instance type categories
 •	Compute optimized – offers a huge amount of CPU; for applications that require more CPU.
 •	Accelerated computing – for applications that require more GPU.
 •	High performance computing – used to run AI/ML models.
+
+AMI – Amazon Machine Images
+•	Blueprints (or) templates that are used to create or launch instances.
+•	An AMI consists of OS (operating system), preinstalled softwares (Python, Java, Git) and files.
+
 
 
 
