@@ -1,3 +1,33 @@
+EC2 – Elastic Compute Cloud
+•	A compute category of service that provides IT resources over the internet.
+•	Offers IT resources on a rent basis.
+•	Launched in the year 2006.
+•	Follows IaaS.
+Components of EC2
+•	Instances – used to provide virtual machines or virtual servers. IT resources provided over the internet are called virtual resources, so servers are called virtual machines / virtual servers. In AWS EC2 these are called instances.
+•	Images (AMI) – used to create customized operating systems with built-in softwares.
+•	ELB (Elastic Load Balancer) – used to distribute user traffic across multiple virtual machines.
+•	EBS (Elastic Block Storage) – used to provide pendrive-like concepts, also known as virtual drives.
+•	Auto Scaling Groups – used to auto scale the instances just by providing minimum and maximum count.
+17/09/2026
+Instances
+•	The virtual machine / virtual server in AWS.
+•	Offers complete customization when creating a virtual machine:
+–	We can choose the operating system
+–	We can choose the amount of storage
+–	We can create a key pair for a secure connection to the instance
+–	We can choose the amount of CPU and RAM by selecting a specific instance type
+Instance type categories
+•	General purpose – provides a balanced amount of CPU, RAM & storage; commonly used to run 3-tier applications or monolithic applications.
+•	Storage optimized – offers a huge amount of storage; for applications that require more storage or consist of bigger-size files (images, movies, etc.).
+•	Memory optimized – offers a huge amount of memory; used to run applications that require more memory.
+•	Compute optimized – offers a huge amount of CPU; for applications that require more CPU.
+•	Accelerated computing – for applications that require more GPU.
+•	High performance computing – used to run AI/ML models.
+
+
+
+
 Steps to Create an EC2 Instance and AMI in AWS
 In AWS, EC2 (Elastic Compute Cloud) is used to create and manage virtual servers in the cloud.
 
