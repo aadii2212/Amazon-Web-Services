@@ -1,0 +1,105 @@
+Steps to Create an EC2 Instance and AMI in AWS
+In AWS, EC2 (Elastic Compute Cloud) is used to create and manage virtual servers in the cloud.
+
+AMI (Amazon Machine Image) is a template or backup image of an EC2 instance that you can use to launch multiple EC2 instances with the same configuration.
+
+Let's understand both processes step by step.
+Part 1: Create an EC2 Instance.
+
+  Step 1: Login to AWS
+      1. Open the AWS Management Console.
+      2. Login using your AWS account.
+      3. Search for EC2 in the search bar.
+     4. Select EC2.
+      Step 2: Launch Instance
+      1. Click Instances from the left navigation panel.
+      2. Click Launch instances.
+      3. Enter your instance name, for example: My-First-EC2.
+Step 3: Choose an AMI
+    Select an operating system:
+    - Amazon Linux
+    - Ubuntu
+    - Windows Server
+    - Red Hat Linux
+    For practice, select Ubuntu Server.
+Step 4: Choose Instance Type
+    Select the required instance type.
+    
+    Example:
+    - t2.micro
+    - t3.micro
+    Choose an instance type eligible for your account's Free Tier, if applicable.
+  Step 5: Create Key Pair
+    1. Click Create new key pair.
+    2. Enter key pair name: my-ec2-key.
+    3. Select RSA.
+    4. Select .pem format.
+    5. Click Create key pair.
+    Important: Download and safely store your .pem file. You need it to connect to your Linux instance using SSH.
+  Step 6: Configure Network Settings
+    Configure:
+    - VPC: Default VPC
+    - Subnet: Default subnet
+    - Auto-assign public IP: Enable
+    - Security Group: Create new security group.
+    Add inbound rules:
+    Type	Port	Source
+    SSH	22	My IP
+    HTTP	80	Anywhere (0.0.0.0/0)
+    HTTPS	443	Anywhere (0.0.0.0/0)
+
+  Step 7: Configure Storage
+    - Default storage: 8 GiB (or as required).
+    - Volume type: General Purpose SSD (gp3).
+  Step 8: Launch Instance
+    1. Review all configurations.
+    2. Click Launch instance.
+    3. Wait until Instance State becomes Running.
+    4. Wait until Status Checks show 2/2 checks passed.
+
+Part 2: Create an AMI from an EC2 Instance
+Now suppose you have configured your EC2 instance with:
+- Ubuntu operating system
+- Website files
+- Required software and configurations
+You want to create another EC2 instance with exactly the same setup. Instead of installing everything again, you can create an AMI.
+  Step 1: Select Your EC2 Instance
+      1. Open the EC2 Dashboard.
+      2. Click Instances.
+      3. Select your running EC2 instance.
+  Step 2: Create Image
+      1. Click Actions.
+      2. Select Image and templates.
+      3. Click Create image.
+  Step 3: Configure AMI
+      Enter the following details:
+      Field	Example
+      Image name	My-Ubuntu-AMI
+      Image description	My configured Ubuntu server
+      No reboot	Leave unchecked for consistency
+      
+      Click Create image.
+  Step 4: Verify AMI
+      1. Open EC2 Dashboard.
+      2. Under Images, click AMIs.
+      3. Check the AMI status.
+      4. Wait until the status becomes Available.
+Part 3: Launch a New EC2 Instance Using Your AMI
+      This is the most important practical step.
+      1. Go to EC2 → AMIs.
+      2. Select My-Ubuntu-AMI.
+      3. Click Launch instance from AMI.
+      4. Enter a new instance name: My-Second-EC2.
+      5. Select an instance type.
+      6. Configure key pair.
+      7. Configure security groups.
+      8. Configure storage.
+      9. Click Launch instance.
+      Your new EC2 instance will be created using the configuration captured in your AMI.
+Part 4: Verify Your New EC2 Instance
+      Connect to your newly created instance using SSH.
+      
+      For Ubuntu:
+      
+      chmod 400 my-ec2-key.pem
+      ssh -i my-ec2-key.pem ubuntu@YOUR_PUBLIC_IP
