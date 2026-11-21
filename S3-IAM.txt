@@ -1,0 +1,153 @@
+# AWS S3 & IAM – Learning Notes
+
+## Overview
+These notes cover two important AWS services:
+- **Amazon S3 (Simple Storage Service):** Object storage service.
+- **AWS IAM (Identity and Access Management):** Service for managing identities and permissions.
+
+## 1. Amazon S3 (Simple Storage Service)
+
+Amazon S3 is an AWS object storage service used to store and retrieve files such as images, videos, documents, backups, and application files.
+
+### Key Concepts
+- **Bucket:** A container used to store objects.
+- **Object:** A file stored inside an S3 bucket.
+- **Storage Class:** Determines how objects are stored based on access patterns and cost.
+- **Lifecycle Rules:** Automatically transition or expire objects.
+- **Replication:** Copy objects between S3 buckets.
+
+### Why Use S3?
+- Scalable object storage.
+- High durability.
+- Global access through AWS endpoints.
+- Backup and archiving.
+- Static website hosting.
+- Access control and versioning.
+
+### S3 Storage Classes
+
+| Storage Class | Use Case |
+|---|---|
+| S3 Standard | Frequently accessed data |
+| S3 Intelligent-Tiering | Changing or unpredictable access patterns |
+| S3 Standard-IA | Infrequently accessed data |
+| S3 One Zone-IA | Infrequently accessed, reproducible data |
+| S3 Glacier Instant Retrieval | Archive data requiring instant access |
+| S3 Glacier Flexible Retrieval | Long-term archive data |
+| S3 Glacier Deep Archive | Rarely accessed archival data |
+
+### Lifecycle Management
+S3 Lifecycle rules help automate:
+- Transitioning objects to cheaper storage classes.
+- Archiving old files.
+- Expiring or deleting objects after a specified period.
+
+### S3 Replication
+- Same-Region Replication (SRR).
+- Cross-Region Replication (CRR).
+- Replication across AWS accounts.
+
+Create an S3 Bucket
+Follow these steps to configure and create an S3 bucket in the AWS Management Console:
+
+Step 1: Sign In to AWS
+
+Step 2: Search for Amazon S3
+
+Go to the search bar at the top of the AWS Console
+    Type S3
+    Select Amazon S3 from the search results
+
+Step 3: Creation of Bucket
+
+    Click on Create bucket
+    Select Bucket type "General purpose"
+    Select Bucket namespace "Global namepace"
+    Enter a unique bucket name
+
+Step 4: Configure Bucket Settings
+
+    Under the Block Public Access Settings keep "Block all public access" enabled
+    Under the Configure Object Ownership Keep the default setting "ACLs disabled"
+    Leave Bucket Versioning disabled
+    Review Additional Settings
+    Click Create bucket
+
+Step 5: Verify the Created Bucket
+
+    Return to the Amazon S3 dashboard
+    Under the Buckets section, locate your newly created bucket
+
+
+
+
+
+## 2. AWS IAM (Identity and Access Management)
+
+IAM is an AWS service used to securely manage users, roles, policies, and permissions.
+
+### Important IAM Components
+- **IAM Users:** Identities for individuals or applications.
+- **IAM Groups:** Collections of IAM users.
+- **IAM Roles:** Identities assumed by trusted users or AWS services.
+- **IAM Policies:** JSON documents defining permissions.
+
+### IAM Role for EC2
+An EC2 instance can use an IAM role to access AWS services without storing long-term access keys on the instance.
+
+Example: Attach an IAM role with appropriate S3 permissions to an EC2 instance so it can access an S3 bucket.
+
+## 3. Important S3 CLI Commands
+
+| AWS CLI Command | Purpose |
+|---|---|
+| `aws s3 ls` | List buckets |
+| `aws s3 ls s3://bucket-name` | List bucket objects |
+| `aws s3 mb s3://bucket-name` | Create a bucket |
+| `aws s3 rb s3://bucket-name` | Delete an empty bucket |
+| `aws s3 cp file.txt s3://bucket-name/` | Upload a file |
+| `aws s3 cp s3://bucket-name/file.txt .` | Download a file |
+| `aws s3 rm s3://bucket-name/file.txt` | Delete an object |
+| `aws s3 sync ./folder s3://bucket-name/` | Synchronize files |
+
+## 4. S3 and IAM Permission Mapping
+
+| Operation | IAM Permission |
+|---|---|
+| List all buckets | `s3:ListAllMyBuckets` |
+| List objects | `s3:ListBucket` |
+| Download objects | `s3:GetObject` |
+| Upload objects | `s3:PutObject` |
+| Delete objects | `s3:DeleteObject` |
+| Create buckets | `s3:CreateBucket` |
+| Delete buckets | `s3:DeleteBucket` |
+
+## 5. Practical: Hosting a Static Website on S3
+
+### Implementation Steps
+1. Create an S3 bucket.
+2. Upload HTML, CSS, JavaScript, and image files.
+3. Enable static website hosting.
+4. Configure the index document (index.html).
+5. Configure appropriate permissions.
+6. Access the website using the S3 website endpoint.
+
+**Security Note:** Public bucket access should be avoided unless required. For a secure public website, consider using CloudFront with Origin Access Control.
+
+## 6. Learning Outcomes
+- Understanding AWS object storage.
+- Creating and managing S3 buckets.
+- Understanding S3 storage classes.
+- Exploring lifecycle and replication rules.
+- Understanding IAM users, roles, and policies.
+- Learning AWS CLI commands.
+- Understanding static website hosting.
+
+## References
+- [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
+- [AWS IAM Documentation](https://docs.aws.amazon.com/iam/)
+
+---
+**Author:** AWS & DevOps Learner
+
+*Continuously learning, practicing, and documenting AWS concepts.*
